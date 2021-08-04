@@ -349,6 +349,8 @@ public class TerrainGenerator : MonoBehaviour
             {
                 newTile.GetComponent<SpriteRenderer>().sortingOrder = -5;
                 worldTiles[x, y] = newTile;
+                newTile.AddComponent<BoxCollider2D>();  // not sure this is smart because there are so many tiles
+                newTile.GetComponent<BoxCollider2D>().size = Vector2.one;
             }
         }
         catch (System.IndexOutOfRangeException)
