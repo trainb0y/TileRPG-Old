@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fc7b4e9cb381f489a64d93189fdb26, type: 3}
+  m_Name: TileAtlas
+  m_EditorClassIdentifier: 
+  stone: {fileID: 11400000, guid: d25288dc403515f418eb932de8937fcc, type: 2}
+  dirt: {fileID: 11400000, guid: 1a5ebff9e13bb2047a0666a857e00029, type: 2}
+  grass: {fileID: 11400000, guid: 4d6036b79351225409606ee755d82414, type: 2}
+  log: {fileID: 11400000, guid: db783e87bea3f6348844d7eed461261b, type: 2}
+  leaf: {fileID: 11400000, guid: 94f71db3a9c864544966bbafc72fa215, type: 2}
+  darkStone: {fileID: 11400000, guid: 5463e8f15d424d64fa382c6a0774bbce, type: 2}
+  sandsone: {fileID: 11400000, guid: c658271347bea1a418bde05bb74bda34, type: 2}
+  sand: {fileID: 11400000, guid: feb650f12e63d8f4cb15964b06dd2fbd, type: 2}
+  red: {fileID: 11400000, guid: 06003de97c355e141afc247637ee2038, type: 2}

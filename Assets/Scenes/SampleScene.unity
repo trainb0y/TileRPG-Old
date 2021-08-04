@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 100
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -200,9 +200,101 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 64, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2066857350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066857352}
+  - component: {fileID: 2066857351}
+  m_Layer: 0
+  m_Name: TerrainGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2066857351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066857350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c91b923e4d5ec468d660df5760363f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileAtlas: {fileID: 11400000, guid: 599512e74949c94499d7bf88f5c36f72, type: 2}
+  treeChance: 15
+  chunkSize: 16
+  worldSize: 256
+  caveFreq: 0.08
+  terrainFreq: 0.04
+  caveCutoff: 0.3
+  seed: 0
+  caveNoiseTexture: {fileID: 0}
+  biomes:
+  - name: Grassland
+    generateCaves: 1
+    heightAddition: 30
+    heightMultiplier: 20
+    surfaceTile: {fileID: 11400000, guid: 4d6036b79351225409606ee755d82414, type: 2}
+    dirtTile: {fileID: 11400000, guid: 1a5ebff9e13bb2047a0666a857e00029, type: 2}
+    surfaceHeight: 5
+    stoneTile: {fileID: 11400000, guid: d25288dc403515f418eb932de8937fcc, type: 2}
+    ores: []
+  - name: Mountain
+    generateCaves: 1
+    heightAddition: 10
+    heightMultiplier: 50
+    surfaceTile: {fileID: 11400000, guid: 4d6036b79351225409606ee755d82414, type: 2}
+    dirtTile: {fileID: 11400000, guid: 1a5ebff9e13bb2047a0666a857e00029, type: 2}
+    surfaceHeight: 2
+    stoneTile: {fileID: 11400000, guid: d25288dc403515f418eb932de8937fcc, type: 2}
+    ores:
+    - name: Dark Stone
+      tileClass: {fileID: 11400000, guid: 5463e8f15d424d64fa382c6a0774bbce, type: 2}
+      rarity: 0.1
+      size: 0.7
+      maxSpawnHeight: 30
+      spreadTexture: {fileID: 0}
+  - name: Desert
+    generateCaves: 0
+    heightAddition: 35
+    heightMultiplier: 10
+    surfaceTile: {fileID: 11400000, guid: feb650f12e63d8f4cb15964b06dd2fbd, type: 2}
+    dirtTile: {fileID: 11400000, guid: feb650f12e63d8f4cb15964b06dd2fbd, type: 2}
+    surfaceHeight: 10
+    stoneTile: {fileID: 11400000, guid: c658271347bea1a418bde05bb74bda34, type: 2}
+    ores:
+    - name: Dark Stone
+      tileClass: {fileID: 11400000, guid: 5463e8f15d424d64fa382c6a0774bbce, type: 2}
+      rarity: 0.1
+      size: 0.7
+      maxSpawnHeight: 30
+      spreadTexture: {fileID: 0}
+--- !u!4 &2066857352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066857350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.127737, y: 67.95382, z: -31.401146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
