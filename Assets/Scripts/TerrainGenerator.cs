@@ -320,8 +320,10 @@ public class TerrainGenerator : MonoBehaviour
                 if (background && GetTile(x, y, true) != null) { return; }
             }
 
-            // CAN OVERWRITE TILES, see https://youtu.be/PaDUYXfbiL0?list=PLn1X2QyVjFVDE9syarF1HoUFwB_3K7z2y&t=145 
-            // but eh, seems not worth it performance-wise
+            RemoveTile(x, y, background); // if safe is off *shrug*
+
+
+
             Sprite tileSprite = tileClass.tileSprites[Random.Range(0, tileClass.tileSprites.Length)]; // pick a random one
 
             GameObject newTile = new GameObject();
@@ -389,15 +391,19 @@ public class TerrainGenerator : MonoBehaviour
 
     public void RemoveTile(int x, int y, bool background = false)
     {
-        if (background)
+        try
         {
-            Destroy(backgroundTiles[x, y]);
-            backgroundTiles[x, y] = null;
+            if (background)
+            {
+                Destroy(backgroundTiles[x, y]);
+                backgroundTiles[x, y] = null;
+            }
+            else
+            {
+                Destroy(worldTiles[x, y]);
+                worldTiles[x, y] = null; // not sure if this is needed, better safe than sorry
+            }
         }
-        else
-        {
-            Destroy(worldTiles[x, y]);
-            worldTiles[x, y] = null; // not sure if this is needed, better safe than sorry
-        }
+        catch (System.IndexOutOfRangeException) { return; }
     }
 }
