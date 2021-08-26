@@ -13,6 +13,7 @@ public class TerrainGenerator : MonoBehaviour
     [Header("Terrain Generation")]
     public int chunkSize = 16;
     public int worldSize = 100;
+    public GameObject player;
 
 
     [Header("Noise Settings")]
@@ -29,10 +30,12 @@ public class TerrainGenerator : MonoBehaviour
      Biomes define ores, vegetation, and materials.
      */
     
-
-    private GameObject[,] worldTiles;
-    private GameObject[,] backgroundTiles;
-    private GameObject[] worldChunks;
+    [HideInInspector]
+    public GameObject[,] worldTiles;
+    [HideInInspector]
+    public GameObject[,] backgroundTiles;
+    [HideInInspector]
+    public GameObject[] worldChunks;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +51,10 @@ public class TerrainGenerator : MonoBehaviour
                 GenerateNoiseTexture(ore.rarity, ore.size, ore.spreadTexture);
             }
         }
-        
-        
+        // gameObject.AddComponent<UnityEngine.Rendering.Universal.CompositeShadowCaster2D>(); 
+        // ^ lag machine
+
+
         CreateChunks();
         AssignBiomes();
         GenerateTerrain();
@@ -58,7 +63,6 @@ public class TerrainGenerator : MonoBehaviour
         GenerateOres();
         PlaceBackgroundTiles();
         CarveCaves();
-
     }
 
     public void CreateChunks()
@@ -338,6 +342,7 @@ public class TerrainGenerator : MonoBehaviour
             newTile.AddComponent<Tile>();
             newTile.GetComponent<Tile>().tileClass = tileClass;
             newTile.transform.position = new Vector2(x + 0.5f, y + 0.5f);
+            newTile.isStatic = true;
 
             newTile.name = tileClass.name;
 
@@ -346,13 +351,22 @@ public class TerrainGenerator : MonoBehaviour
                 backgroundTiles[x, y] = newTile;
                 newTile.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f); // ??
                 newTile.GetComponent<SpriteRenderer>().sortingOrder = -10;
+                newTile.GetComponent<SpriteRenderer>().sortingLayerName = "Background Tiles";
             }
             else
             {
                 newTile.GetComponent<SpriteRenderer>().sortingOrder = -5;
                 worldTiles[x, y] = newTile;
+
                 newTile.AddComponent<BoxCollider2D>();  // not sure this is smart because there are so many tiles
                 newTile.GetComponent<BoxCollider2D>().size = Vector2.one;
+
+                // newTile.AddComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>();
+                // newTile.GetComponent<UnityEngine.Rendering.Universal.ShadowCaster2D>().selfShadows = true;
+                // ^ instant 1 fps
+
+
+                newTile.GetComponent<SpriteRenderer>().sortingLayerName = "Tiles";
             }
         }
         catch (System.IndexOutOfRangeException)
@@ -406,4 +420,5 @@ public class TerrainGenerator : MonoBehaviour
         }
         catch (System.IndexOutOfRangeException) { return; }
     }
+
 }
